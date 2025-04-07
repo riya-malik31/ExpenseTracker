@@ -13,7 +13,7 @@ function Signup() {
   event.preventDefault();
 
   try {
-    const response = await axios.post("http://localhost:5000/signup", inputs);
+    const response = await axios.post("http://localhost:5000/signup","https://expensetracker-2-edh9.onrender.com", inputs);
     alert(response.data.message); 
     navigate("/Login")
   } catch (error) {
