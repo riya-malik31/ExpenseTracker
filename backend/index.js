@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const app = express();
 app.use(express.json())
 app.use(cors());
@@ -36,7 +36,7 @@ app.post('/signup', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     await usersCollection.insertOne({
       username,
@@ -63,7 +63,7 @@ app.post('/login', async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found, kindly register first" });
     }
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcryptjs.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
