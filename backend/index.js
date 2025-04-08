@@ -5,10 +5,13 @@ const { MongoClient, ObjectId } = require('mongodb');
 const bcryptjs = require('bcryptjs');
 const app = express();
 app.use(express.json())
-app.use(cors());
-// const uri = "mongodb://0.0.0.0:27017";
+app.use(cors({
+  origin: '',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
 const uri= "mongodb+srv://riyacws123:t5ykuujYGJWmgU5g@cluster0.nsec2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-const port = process.env.PORT || https://expensetracker-2-edh9.onrender.com || 5000
+const port = process.env.PORT || 5000
 app.use(bodyParser.json());
 
 let client;
