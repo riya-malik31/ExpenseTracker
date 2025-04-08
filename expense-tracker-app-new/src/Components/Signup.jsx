@@ -13,7 +13,7 @@ function Signup() {
   event.preventDefault();
 
   try {
-    const response = await axios.post("https://expense-tracker-backend-eight.vercel.app/signup", inputs);
+    const response = await axios.post("https://expense-tracker-backend-six-fawn.vercel.app/signup", inputs);
     alert(response.data.message); 
     navigate("/Login")
   } catch (error) {
