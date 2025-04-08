@@ -6,7 +6,7 @@ const bcryptjs = require('bcryptjs');
 const app = express();
 app.use(express.json())
 app.use(cors({
-  origin: '',
+  origin: 'https://expense-tracker-n8oc.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
