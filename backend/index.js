@@ -4,13 +4,18 @@ const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
 const bcryptjs = require('bcryptjs');
 const app = express();
-app.use(express.json())
+app.use(express.json());
 app.use(cors({
   origin: 'https://expense-tracker-frontend-ten-fawn.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
- 
 }));
+const buildPath = path.join(__dirname, '../client/build');
+app.use(express.static(buildPath));
+// For any other request, serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+});
 const uri= "mongodb+srv://riyacws123:t5ykuujYGJWmgU5g@cluster0.nsec2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 const port = process.env.PORT || 5000
 app.use(bodyParser.json());
