@@ -10,12 +10,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
-const buildPath = path.join(__dirname, '../client/build');
-app.use(express.static(buildPath));
-// For any other request, serve the React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
-});
+
 const uri= "mongodb+srv://riyacws123:t5ykuujYGJWmgU5g@cluster0.nsec2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 const port = process.env.PORT || 5000
 app.use(bodyParser.json());
@@ -225,10 +220,13 @@ app.delete('/delete-income/:id', async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
-
+const buildPath = path.join(__dirname, '../client/build');
+app.use(express.static(buildPath));
+// For any other request, serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+});
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
-
 });
 
