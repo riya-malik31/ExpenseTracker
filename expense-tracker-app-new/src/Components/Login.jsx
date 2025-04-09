@@ -11,7 +11,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("https://expense-tracker-backend-eight.vercel.app/login", {
+      const response = await fetch("https://expense-tracker-backend-six-fawn.vercel.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(inputs),
