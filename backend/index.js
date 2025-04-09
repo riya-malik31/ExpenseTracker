@@ -6,9 +6,8 @@ const bcryptjs = require('bcryptjs');
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: 'https://expense-tracker-frontend-ten-fawn.vercel.app',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
 }));
 
 const uri= "mongodb+srv://riyacws123:t5ykuujYGJWmgU5g@cluster0.nsec2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
